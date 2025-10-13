@@ -1,6 +1,6 @@
 package com.example.tinderdemo.model.register;
 
-import com.example.tinderdemo.entity.Gender;
+import com.example.tinderdemo.entity.enums.Gender;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;

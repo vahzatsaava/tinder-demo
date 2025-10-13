@@ -2,6 +2,7 @@ package com.example.tinderdemo.mapper;
 
 import com.example.tinderdemo.entity.User;
 import com.example.tinderdemo.model.UserDto;
+import com.example.tinderdemo.model.like.UserMatchDto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-10-11T12:33:26+0400",
+    date = "2025-10-13T15:17:03+0400",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.4.1 (Amazon.com Inc.)"
 )
 @Component
@@ -42,28 +43,22 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public User toUser(UserDto userDto) {
-        if ( userDto == null ) {
+    public UserMatchDto toUserMatchDto(User user) {
+        if ( user == null ) {
             return null;
         }
 
-        User user = new User();
+        UserMatchDto userMatchDto = new UserMatchDto();
 
-        user.setId( userDto.getId() );
-        user.setEmail( userDto.getEmail() );
-        user.setPassword( userDto.getPassword() );
-        user.setName( userDto.getName() );
-        user.setAge( userDto.getAge() );
-        user.setGender( userDto.getGender() );
-        user.setCity( userDto.getCity() );
-        user.setBio( userDto.getBio() );
-        user.setStatus( userDto.getStatus() );
-        user.setMainPhotoUrl( userDto.getMainPhotoUrl() );
-        List<String> list = userDto.getPhotos();
-        if ( list != null ) {
-            user.setPhotos( new ArrayList<String>( list ) );
-        }
+        userMatchDto.setId( user.getId() );
+        userMatchDto.setEmail( user.getEmail() );
+        userMatchDto.setName( user.getName() );
+        userMatchDto.setAge( user.getAge() );
+        userMatchDto.setGender( user.getGender() );
+        userMatchDto.setCity( user.getCity() );
+        userMatchDto.setBio( user.getBio() );
+        userMatchDto.setStatus( user.getStatus() );
 
-        return user;
+        return userMatchDto;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.tinderdemo.entity;
+package com.example.tinderdemo.entity.enums;
 
 public enum Gender {
     MALE,

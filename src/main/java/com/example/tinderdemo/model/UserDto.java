@@ -1,7 +1,7 @@
 package com.example.tinderdemo.model;
 
-import com.example.tinderdemo.entity.Gender;
-import com.example.tinderdemo.entity.UserStatus;
+import com.example.tinderdemo.entity.enums.Gender;
+import com.example.tinderdemo.entity.enums.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
-    private Long id;
+    private String id;
     private String email;
     private String password;
     private String name;

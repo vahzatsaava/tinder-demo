@@ -4,7 +4,7 @@ import com.example.tinderdemo.model.register.AuthResponse;
 import com.example.tinderdemo.model.register.RefreshTokenDto;
 import com.example.tinderdemo.model.register.UserAuthRequest;
 import com.example.tinderdemo.model.register.UserRegisterRequest;
-import com.example.tinderdemo.service.UserService;
+import com.example.tinderdemo.service.interfaces.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

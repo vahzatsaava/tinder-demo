@@ -2,7 +2,7 @@ package com.example.tinderdemo.controller;
 
 import com.example.tinderdemo.model.UserDto;
 import com.example.tinderdemo.model.UserUpdateDto;
-import com.example.tinderdemo.service.UserService;
+import com.example.tinderdemo.service.interfaces.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

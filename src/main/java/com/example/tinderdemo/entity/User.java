@@ -1,5 +1,7 @@
 package com.example.tinderdemo.entity;
 
+import com.example.tinderdemo.entity.enums.Gender;
+import com.example.tinderdemo.entity.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,8 +19,7 @@ import java.util.List;
 @Setter
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String email;
     private String password;
