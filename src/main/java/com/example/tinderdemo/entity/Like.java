@@ -1,10 +1,8 @@
 package com.example.tinderdemo.entity;
 
+import com.example.tinderdemo.entity.enums.LikeType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Table(name = "likes")
@@ -12,12 +10,20 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Like {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    private Long fromUserId;
-    private Long toUserId;
-    private boolean liked; // true = like, false = dislike
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "from_user_id", nullable = false)
+    private User fromUser;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "to_user_id", nullable = false)
+    private User toUser;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "like_status")
+    private LikeType likeStatus; // like,dislike, superlike
 }

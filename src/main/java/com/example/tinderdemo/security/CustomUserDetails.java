@@ -9,9 +9,9 @@ import java.util.Objects;
 
 @Getter
 public class CustomUserDetails extends User {
-    private final Long userId;
+    private final String userId;
 
-    public CustomUserDetails(Long userId, String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public CustomUserDetails(String userId, String username, String password, Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
         this.userId = userId;
     }

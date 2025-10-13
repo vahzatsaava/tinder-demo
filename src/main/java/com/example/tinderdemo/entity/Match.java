@@ -1,26 +1,34 @@
 package com.example.tinderdemo.entity;
 
+import com.example.tinderdemo.entity.enums.MatchStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "matches")
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 public class Match {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    private Long user1Id;
-    private Long user2Id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id1", nullable = false)
+    private User user1;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id2", nullable = false)
+    private User user2;
+
+    @Column(name = "match_status")
+    @Enumerated(EnumType.STRING)
+    private MatchStatus matchStatus;
+
     private LocalDateTime matchedAt;
 }
 

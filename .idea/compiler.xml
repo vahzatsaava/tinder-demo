@@ -13,14 +13,17 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
         </processorPath>
         <module name="TinderDemo" />
+        <module name="SubscribersApi" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="SubscribersApi" target="17" />
       <module name="TinderDemo" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="SubscribersApi" options="-parameters" />
       <module name="TinderDemo" options="-parameters" />
     </option>
   </component>

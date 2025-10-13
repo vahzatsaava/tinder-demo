@@ -1,7 +1,7 @@
 package com.example.tinderdemo.service;
 
 import com.example.tinderdemo.entity.User;
-import com.example.tinderdemo.entity.UserStatus;
+import com.example.tinderdemo.entity.enums.UserStatus;
 import com.example.tinderdemo.exceptions.UserAuthException;
 import com.example.tinderdemo.exceptions.UserNotFoundException;
 import com.example.tinderdemo.mapper.UserMapper;
@@ -13,17 +13,20 @@ import com.example.tinderdemo.model.register.UserRegisterRequest;
 import com.example.tinderdemo.repository.UserRepository;
 import com.example.tinderdemo.security.CustomUserDetails;
 import com.example.tinderdemo.security.JwtUtil;
+import com.example.tinderdemo.service.interfaces.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +37,6 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
-
 
     @Transactional
     @Override
@@ -114,6 +116,7 @@ public class UserServiceImpl implements UserService {
         log.info("Deleting account for user: {}", principal.getName());
         User user = findUserByEmail(principal.getName());
         user.setStatus(UserStatus.DELETED);
+        user.setEmail(user.getEmail() + " DELETE");
         log.info("User account deleted: {}", user.getEmail());
     }
 
@@ -132,13 +135,15 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserDto(user);
     }
 
-    private User findUserByEmail(String userEmail) {
+    @Override
+    public User findUserByEmail(String userEmail) {
         return userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new UserNotFoundException("User not found by name " + userEmail));
     }
 
     private User saveUser(UserRegisterRequest request) {
         User user = new User();
+        user.setId(UUID.randomUUID().toString());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole("USER");

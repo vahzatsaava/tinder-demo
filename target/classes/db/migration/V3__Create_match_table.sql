@@ -1,7 +1,7 @@
 CREATE TABLE matches
 (
-    id      SERIAL PRIMARY KEY,
-    user_id1 BIGINT REFERENCES users (id),
-    user_id2 BIGINT REFERENCES users (id),
+    id         VARCHAR(50) PRIMARY KEY,
+    user_id1   VARCHAR(50) REFERENCES users (id) on delete cascade,
+    user_id2   VARCHAR(50) REFERENCES users (id) on DELETE cascade,
     matched_at timestamp not null
 );

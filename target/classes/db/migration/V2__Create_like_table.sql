@@ -1,7 +1,9 @@
 CREATE TABLE likes
 (
-    id      SERIAL PRIMARY KEY,
-    from_user_id BIGINT REFERENCES users (id),
-    to_user_id BIGINT REFERENCES users (id),
-    liked boolean not null
+    id           VARCHAR(50) PRIMARY KEY,
+    from_user_id VARCHAR(50) REFERENCES users (id) on delete cascade,
+    to_user_id   VARCHAR(50) REFERENCES users (id) on delete cascade,
+    liked        boolean not null
 );
+
+
